@@ -1,0 +1,30 @@
+﻿  main.cpp
+  ADSDemo.cpp
+  AbstractBehaviour.cpp
+  CameraBehaviour.cpp
+D:\Saxion\year 2\term 2\3d rendering\mge_v19_student_version\MicroGameEngine - Advanced Tools PBR\src\mge\behaviours\CameraBehaviour.cpp(19,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  KeysBehaviour.cpp
+  LightBehaviour.cpp
+  RotatingBehaviour.cpp
+  AbstractGame.cpp
+  Camera.cpp
+  GameObject.cpp
+  Light.cpp
+  Mesh.cpp
+  Renderer.cpp
+  ShaderProgram.cpp
+  Texture.cpp
+  World.cpp
+  AbstractMaterial.cpp
+  ColorMaterial.cpp
+  PBRColorMaterial.cpp
+  TerrainMaterial.cpp
+  Generating Code...
+  Compiling...
+  TextureMaterial.cpp
+  MGEDemo.cpp
+  TerrainDemo.cpp
+  DebugHud.cpp
+  PBRTexMaterial.cpp
+  Generating Code...
+  mge.vcxproj -> D:\Saxion\year 2\term 2\3d rendering\mge_v19_student_version\MicroGameEngine - Advanced Tools PBR\_visual_studio\debug_static_exe/mge.exe
