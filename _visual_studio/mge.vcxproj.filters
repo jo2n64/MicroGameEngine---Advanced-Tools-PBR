@@ -97,7 +97,9 @@
     <ClInclude Include="..\src\mge\materials\PBRColorMaterial.hpp">
       <Filter>MGE Source files\mge\materials</Filter>
     </ClInclude>
-    <ClInclude Include="PBRTexMaterial.hpp" />
+    <ClInclude Include="..\src\mge\materials\PBRTexMaterial.hpp">
+      <Filter>MGE Source files\mge\materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -172,8 +174,8 @@
     <ClCompile Include="..\src\mge\materials\PBRColorMaterial.cpp">
       <Filter>MGE Source files\mge\materials</Filter>
     </ClCompile>
-    <ClCompile Include="PBRTexMaterial.cpp">
-      <Filter>MGE Source files</Filter>
+    <ClCompile Include="..\src\mge\materials\PBRTexMaterial.cpp">
+      <Filter>MGE Source files\mge\materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

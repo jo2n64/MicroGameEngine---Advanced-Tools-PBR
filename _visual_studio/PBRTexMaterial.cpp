@@ -24,8 +24,12 @@ GLint PBRTexMaterial::_aVertex = 0;
 GLint PBRTexMaterial::_aNormal = 0;
 GLint PBRTexMaterial::_aUV = 0;
 
-PBRTexMaterial::PBRTexMaterial(Texture* pDiffuseTexture, Texture* pMetallicTexture, Texture* pRoughnessTexture, Texture* pNormalTexture) :
-	_diffuseTexture(pDiffuseTexture), _metallicTexture(pMetallicTexture), _roughnessTexture(pRoughnessTexture), _normalTexture(pNormalTexture)
+PBRTexMaterial::PBRTexMaterial(Texture* pDiffuseTexture, Texture* pMetallicTexture, Texture* pRoughnessTexture, Texture* pNormalTexture):
+	_diffuseTexture(pDiffuseTexture), _metallicTexture(pMetallicTexture), _roughnessTexture(pRoughnessTexture), _normalTexture(pNormalTexture){
+	_lazyInitializeShader();
+}
+
+PBRTexMaterial::PBRTexMaterial()
 {
 	_lazyInitializeShader();
 }

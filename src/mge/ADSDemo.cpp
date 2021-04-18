@@ -14,6 +14,7 @@
 #include "mge/materials/ColorMaterial.hpp"
 #include "mge/materials/TextureMaterial.hpp"
 #include "mge/materials/PBRColorMaterial.hpp"
+#include "mge/materials/PBRTexMaterial.hpp"
 
 #include "mge/behaviours/RotatingBehaviour.hpp"
 #include "mge/behaviours/KeysBehaviour.hpp"
@@ -23,6 +24,7 @@
 #include "mge/util/DebugHud.hpp"
 
 #include "mge/config.hpp"
+
 
 ADSDemo::ADSDemo() :AbstractGame()
 {
@@ -37,6 +39,11 @@ void ADSDemo::initalize()
 void ADSDemo::_initializeScene()
 {
 
+	Texture* diffuseTexture = Texture::load(config::MGE_TEXTURE_PATH + "samplepbr/rustediron2_basecolor.png");
+	Texture* metallicTexture = Texture::load(config::MGE_TEXTURE_PATH + "samplepbr/rustediron2_metallic.png");
+	Texture* roughnessTexture = Texture::load(config::MGE_TEXTURE_PATH + "samplepbr/rustediron2_roughness.png");
+	Texture* normalTexture = Texture::load(config::MGE_TEXTURE_PATH + "samplepbr/rustediron2_normal.png");
+
 	Mesh* planeMesh = Mesh::load(config::MGE_MODEL_PATH + "plane20x20_2tris_aligned_uvs.obj");
 	Mesh* cubeMesh = Mesh::load(config::MGE_MODEL_PATH + "cube_flat.obj");
 
@@ -46,8 +53,9 @@ void ADSDemo::_initializeScene()
 
 	//AbstractMaterial* grayMaterial = new ColorMaterial(glm::vec3(0.3, 0.2, 0.4));
 	AbstractMaterial* randomMaterial = new ColorMaterial(glm::vec3(1, 0, 0));
-	//AbstractMaterial* runicStoneMaterial = new TextureMaterial(Texture::load(config::MGE_TEXTURE_PATH + "runicfloor.png"));*/
+	//AbstractMaterial* runicStoneMaterial = new TextureMaterial(Texture::load(config::MGE_TEXTURE_PATH + "runicfloor.png"));
 	AbstractMaterial* pbrTestMaterial = new PBRColorMaterial(glm::vec3(1,0,1));
+	AbstractMaterial* pbrTestTextureMaterial = new PBRTexMaterial(diffuseTexture, metallicTexture, roughnessTexture, normalTexture);
 	//AbstractMaterial* lightMaterial = new LightMaterial(glm::vec3(1, 1, 0));
 
 	Camera* cam = new Camera("camera", glm::vec3(0, 1, 7));
@@ -70,7 +78,7 @@ void ADSDemo::_initializeScene()
 			GameObject* cube = new GameObject("cube"+numCube, glm::vec3(-4.0f + col * spacing , 0.4f + row * spacing, -4.0f));
 			cube->setMesh(cubeMesh);
 			cube->scale(glm::vec3(0.2f, 0.2f, 0.2f));
-			cube->setMaterial(pbrTestMaterial);
+			cube->setMaterial(pbrTestTextureMaterial);
 			_world->add(cube);
 		}
 	}

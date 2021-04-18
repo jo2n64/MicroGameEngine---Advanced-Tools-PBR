@@ -11,6 +11,7 @@ class PBRTexMaterial : public AbstractMaterial
 {
 public:
 	PBRTexMaterial(Texture* pDiffuseTexture, Texture* pMetallicTexture, Texture* pRoughnessTexture, Texture* pNormalTexture);
+	PBRTexMaterial();
 	virtual ~PBRTexMaterial();
 
 	virtual void render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelMatrix, const glm::mat4& pViewMatrix, const glm::mat4& pProjectionMatrix) override;
