@@ -40,11 +40,12 @@ void PBRTexMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelM
 	_shader->use();
 
 	if (pWorld->getLightCount() > 0) {
-		Light* light = pWorld->getLightAt(0);
-
-		glUniform3fv(_shader->getUniformLocation("pointLightColors[" + std::to_string(0) + ']'), 1, glm::value_ptr(light->getLightColor()));
-		glUniform3fv(_shader->getUniformLocation("pointLightPositions[" + std::to_string(0) + ']'), 1, glm::value_ptr(light->getWorldPosition()));
-		glUniform3fv(_shader->getUniformLocation("cameraPosition"), 1, glm::value_ptr(pWorld->getMainCamera()->getWorldPosition()));
+		for (int i = 0; i < pWorld->getLightCount(); i++) {
+			Light* light = pWorld->getLightAt(i);
+			glUniform3fv(_shader->getUniformLocation("pointLightColors[" + std::to_string(i) + ']'), 1, glm::value_ptr(light->getLightColor()));
+			glUniform3fv(_shader->getUniformLocation("pointLightPositions[" + std::to_string(i) + ']'), 1, glm::value_ptr(light->getWorldPosition()));
+			glUniform3fv(_shader->getUniformLocation("cameraPosition"), 1, glm::value_ptr(pWorld->getMainCamera()->getWorldPosition()));
+		}
 	}
 
 	streamTextureToShader(0, _diffuseTexture, _uDiffuseTexture);
@@ -62,7 +63,7 @@ void PBRTexMaterial::render(World* pWorld, Mesh* pMesh, const glm::mat4& pModelM
 
 void PBRTexMaterial::streamTextureToShader(int textureIndex, Texture* textureToStream, GLint uniformLocation)
 {
-	glActiveTexture(GL_TEXTURE0+textureIndex);
+	glActiveTexture(GL_TEXTURE0 + textureIndex);
 	glBindTexture(GL_TEXTURE_2D, textureToStream->getId());
 	glUniform1i(uniformLocation, textureIndex);
 }
