@@ -16,8 +16,8 @@ uniform sampler2D normalTexture;
 
 uniform vec3 cameraPosition;
 
-uniform vec3 pointLightColors[2];
-uniform vec3 pointLightPositions[2];
+uniform vec3 pointLightColors[4];
+uniform vec3 pointLightPositions[4];
 
 out vec4 fragment_color;
 
@@ -88,7 +88,7 @@ void main( void ){
 
     vec3 Lo = vec3(0.0);
         
-    for(int i = 0; i < 2; i++){
+    for(int i = 0; i < 4; i++){
         vec3 L = normalize(pointLightPositions[i] - worldPos);
         vec3 H = normalize(V + L);
         float distance = length(pointLightPositions[i] - worldPos);

@@ -50,9 +50,9 @@ void ADSDemo::_initializeScene()
 	Mesh* planeMesh = Mesh::load(config::MGE_MODEL_PATH + "plane20x20_2tris_aligned_uvs.obj");
 	Mesh* cubeMesh = Mesh::load(config::MGE_MODEL_PATH + "cube_flat.obj");
 	Mesh* suzanneMesh = Mesh::load(config::MGE_MODEL_PATH + "suzanna_smooth.obj");
-	Mesh* dragonMesh = Mesh::load(config::MGE_MODEL_PATH + "dragon.obj");
+	//Mesh* dragonMesh = Mesh::load(config::MGE_MODEL_PATH + "stanford-dragon.obj");
 
-	int cols = 20;
+	int cols = 10;
 	int rows = 20;
 	float spacing = 0.8f;
 
@@ -80,7 +80,7 @@ void ADSDemo::_initializeScene()
 	for (int row = 0; row < rows; ++row) {
 		for (int col = 0; col < cols; ++col) {
 			std::string numCube = std::to_string(row) + std::to_string(col);
-			GameObject* cube = new GameObject("cube"+numCube, glm::vec3(-4.0f + col * spacing , 0.4f + row * spacing, -4.0f));
+			GameObject* cube = new GameObject("cube" + numCube, glm::vec3(-4.0f + col * spacing, 0.4f + row * spacing, 0.0f));
 			cube->setMesh(cubeMesh);
 			cube->scale(glm::vec3(0.2f, 0.2f, 0.2f));
 			cube->setMaterial(pbrTestTextureMaterial);
@@ -88,28 +88,54 @@ void ADSDemo::_initializeScene()
 		}
 	}
 
-	for (int row = 0; row < rows; ++row) {
+	/*for (int row = 0; row < rows; ++row) {
 		for (int col = 0; col < cols; ++col) {
-			GameObject* suzanne = new GameObject("suzanne", glm::vec3(-5.0f + col * spacing, 0.4 + row * spacing, 7.0f));
+			GameObject* suzanne = new GameObject("suzanne", glm::vec3(-5.0f + col * spacing, 0.4 + row * spacing, 0.0f));
 			suzanne->scale(glm::vec3(0.3f, 0.3f, 0.3f));
 			suzanne->setMesh(suzanneMesh);
 			suzanne->setMaterial(pbrTestTextureMaterial);
 			_world->add(suzanne);
 		}
-	}
+	}*/
+
+	/*GameObject* dragon = new GameObject("dragon", glm::vec3(0.0f, 0.0f, 0.0f));
+	dragon->setMesh(dragonMesh);
+	dragon->setMaterial(pbrTestTextureMaterial);
+	dragon->scale(glm::vec3(0.5f, 0.5f, 0.5f));
+	_world->add(dragon);*/
 	
 
-	Light* light = new Light("light", glm::vec3(0.0f, 6.0f, -7.0f));
-	light->scale(glm::vec3(2, 2, 2));
+	Light* light = new Light("light", glm::vec3(0, 5.0f, -7.0f));
+	light->scale(glm::vec3(1, 1, 1));
+	light->setMesh(cubeMesh);
+	light->setMaterial(randomMaterial);
 	light->setLightColor(glm::vec3(1, 1, 1));
 	light->setBehaviour(new LightBehaviour());
 	_world->add(light);
 
-	Light* light2 = new Light("light", glm::vec3(0, 6.0f, 4.0f));
-	light2->scale(glm::vec3(2, 2, 2));
+	Light* light2 = new Light("light", glm::vec3(4.0f, 6.0f, 4.0f));
+	light2->scale(glm::vec3(1, 1, 1));
+	light2->setMesh(cubeMesh);
+	light2->setMaterial(randomMaterial);
 	light2->setLightColor(glm::vec3(1, 1, 1));
 	light2->setBehaviour(new LightBehaviour());
 	_world->add(light2);
+
+	/*Light* light3 = new Light("light", glm::vec3(8.0f, 8.0f, -4.0f));
+	light3->scale(glm::vec3(1, 1, 1));
+	light3->setMesh(cubeMesh);
+	light3->setMaterial(randomMaterial);
+	light3->setLightColor(glm::vec3(1, 1, 1));
+	light3->setBehaviour(new LightBehaviour());
+	_world->add(light3);
+
+	Light* light4 = new Light("light", glm::vec3(3.0f, 10.0f, 8.0f));
+	light4->scale(glm::vec3(1, 1, 1));
+	light4->setMesh(cubeMesh);
+	light4->setMaterial(randomMaterial);
+	light4->setLightColor(glm::vec3(1, 1, 1));
+	light4->setBehaviour(new LightBehaviour());
+	_world->add(light4);*/
 
 }
 
