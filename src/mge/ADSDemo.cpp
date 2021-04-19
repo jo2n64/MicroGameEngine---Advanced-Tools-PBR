@@ -52,14 +52,15 @@ void ADSDemo::_initializeScene()
 	Mesh* suzanneMesh = Mesh::load(config::MGE_MODEL_PATH + "suzanna_smooth.obj");
 	//Mesh* dragonMesh = Mesh::load(config::MGE_MODEL_PATH + "stanford-dragon.obj");
 
-	int cols = 10;
-	int rows = 20;
+	int cols = 20;
+	int rows = 10;
 	float spacing = 0.8f;
 
 	//AbstractMaterial* grayMaterial = new ColorMaterial(glm::vec3(0.3, 0.2, 0.4));
 	AbstractMaterial* randomMaterial = new ColorMaterial(glm::vec3(1, 0, 0));
 	//AbstractMaterial* runicStoneMaterial = new TextureMaterial(Texture::load(config::MGE_TEXTURE_PATH + "runicfloor.png"));
-	AbstractMaterial* pbrTestMaterial = new PBRColorMaterial(glm::vec3(1,0,1));
+	AbstractMaterial* pbrPlaneMaterial = new PBRColorMaterial(glm::vec3(1,0,1));
+	AbstractMaterial* pbrTestMaterial= new PBRColorMaterial(glm::vec3(1, 0, 0));
 	AbstractMaterial* pbrTestTextureMaterial = new PBRTexMaterial(diffuseTexture, metallicTexture, roughnessTexture, normalTexture);
 	//AbstractMaterial* lightMaterial = new LightMaterial(glm::vec3(1, 1, 0));
 
@@ -74,38 +75,38 @@ void ADSDemo::_initializeScene()
 	//plane->scale(glm::vec3(5, 1, 5));
 	plane->scale(glm::vec3(0.7f, 0.7f, 0.7f));
 	plane->setMesh(planeMesh);
-	plane->setMaterial(pbrTestMaterial);
+	plane->setMaterial(pbrPlaneMaterial);
 	_world->add(plane);
 
-	for (int row = 0; row < rows; ++row) {
+	/*for (int row = 0; row < rows; ++row) {
 		for (int col = 0; col < cols; ++col) {
 			std::string numCube = std::to_string(row) + std::to_string(col);
-			GameObject* cube = new GameObject("cube" + numCube, glm::vec3(-4.0f + col * spacing, 0.4f + row * spacing, 0.0f));
+			GameObject* cube = new GameObject("cube" + numCube, glm::vec3(-4.0f + col * spacing, 0.4f + row * spacing, -7.0f));
 			cube->setMesh(cubeMesh);
 			cube->scale(glm::vec3(0.2f, 0.2f, 0.2f));
-			cube->setMaterial(pbrTestTextureMaterial);
+			cube->setMaterial(pbrTestMaterial);
 			_world->add(cube);
 		}
-	}
+	}*/
 
-	/*for (int row = 0; row < rows; ++row) {
+	for (int row = 0; row < rows; ++row) {
 		for (int col = 0; col < cols; ++col) {
 			GameObject* suzanne = new GameObject("suzanne", glm::vec3(-5.0f + col * spacing, 0.4 + row * spacing, 0.0f));
 			suzanne->scale(glm::vec3(0.3f, 0.3f, 0.3f));
 			suzanne->setMesh(suzanneMesh);
-			suzanne->setMaterial(pbrTestTextureMaterial);
+			suzanne->setMaterial(pbrTestMaterial);
 			_world->add(suzanne);
 		}
-	}*/
+	}
 
 	/*GameObject* dragon = new GameObject("dragon", glm::vec3(0.0f, 0.0f, 0.0f));
 	dragon->setMesh(dragonMesh);
-	dragon->setMaterial(pbrTestTextureMaterial);
+	dragon->setMaterial(pbrTestMaterial);
 	dragon->scale(glm::vec3(0.5f, 0.5f, 0.5f));
 	_world->add(dragon);*/
 	
 
-	Light* light = new Light("light", glm::vec3(0, 5.0f, -7.0f));
+	Light* light = new Light("light", glm::vec3(0, 5.0f, -5.0f));
 	light->scale(glm::vec3(1, 1, 1));
 	light->setMesh(cubeMesh);
 	light->setMaterial(randomMaterial);
@@ -113,7 +114,7 @@ void ADSDemo::_initializeScene()
 	light->setBehaviour(new LightBehaviour());
 	_world->add(light);
 
-	Light* light2 = new Light("light", glm::vec3(4.0f, 6.0f, 4.0f));
+	Light* light2 = new Light("light", glm::vec3(4.0f, 6.0f, 5.0f));
 	light2->scale(glm::vec3(1, 1, 1));
 	light2->setMesh(cubeMesh);
 	light2->setMaterial(randomMaterial);
@@ -121,7 +122,7 @@ void ADSDemo::_initializeScene()
 	light2->setBehaviour(new LightBehaviour());
 	_world->add(light2);
 
-	/*Light* light3 = new Light("light", glm::vec3(8.0f, 8.0f, -4.0f));
+	/*Light* light3 = new Light("light", glm::vec3(8.0f, 8.0f, -5.0f));
 	light3->scale(glm::vec3(1, 1, 1));
 	light3->setMesh(cubeMesh);
 	light3->setMaterial(randomMaterial);
@@ -129,7 +130,7 @@ void ADSDemo::_initializeScene()
 	light3->setBehaviour(new LightBehaviour());
 	_world->add(light3);
 
-	Light* light4 = new Light("light", glm::vec3(3.0f, 10.0f, 8.0f));
+	Light* light4 = new Light("light", glm::vec3(3.0f, 10.0f, 5.0f));
 	light4->scale(glm::vec3(1, 1, 1));
 	light4->setMesh(cubeMesh);
 	light4->setMaterial(randomMaterial);
