@@ -1,5 +1,7 @@
 #include "mge/core/AbstractGame.hpp"
 
+class DebugHud;
+
 #pragma once
 class ADSDemo : public AbstractGame
 {

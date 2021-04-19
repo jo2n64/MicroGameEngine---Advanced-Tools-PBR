@@ -1,4 +1,6 @@
-#include "ADSDemo.hpp"
+#include <iostream>
+#include <string>
+
 #include "glm.hpp"
 
 #include "mge/core/Renderer.hpp"
@@ -24,6 +26,7 @@
 #include "mge/util/DebugHud.hpp"
 
 #include "mge/config.hpp"
+#include "mge/ADSDemo.hpp"
 
 
 ADSDemo::ADSDemo() :AbstractGame()
@@ -46,9 +49,11 @@ void ADSDemo::_initializeScene()
 
 	Mesh* planeMesh = Mesh::load(config::MGE_MODEL_PATH + "plane20x20_2tris_aligned_uvs.obj");
 	Mesh* cubeMesh = Mesh::load(config::MGE_MODEL_PATH + "cube_flat.obj");
+	Mesh* suzanneMesh = Mesh::load(config::MGE_MODEL_PATH + "suzanna_smooth.obj");
+	Mesh* dragonMesh = Mesh::load(config::MGE_MODEL_PATH + "dragon.obj");
 
-	int cols = 7;
-	int rows = 7;
+	int cols = 20;
+	int rows = 20;
 	float spacing = 0.8f;
 
 	//AbstractMaterial* grayMaterial = new ColorMaterial(glm::vec3(0.3, 0.2, 0.4));
@@ -67,7 +72,7 @@ void ADSDemo::_initializeScene()
 
 	GameObject* plane = new GameObject("plane", glm::vec3(0, 0, 0));
 	//plane->scale(glm::vec3(5, 1, 5));
-	plane->scale(glm::vec3(0.5f, 0.5f, 0.5f));
+	plane->scale(glm::vec3(0.7f, 0.7f, 0.7f));
 	plane->setMesh(planeMesh);
 	plane->setMaterial(pbrTestMaterial);
 	_world->add(plane);
@@ -82,15 +87,25 @@ void ADSDemo::_initializeScene()
 			_world->add(cube);
 		}
 	}
+
+	for (int row = 0; row < rows; ++row) {
+		for (int col = 0; col < cols; ++col) {
+			GameObject* suzanne = new GameObject("suzanne", glm::vec3(-5.0f + col * spacing, 0.4 + row * spacing, 7.0f));
+			suzanne->scale(glm::vec3(0.3f, 0.3f, 0.3f));
+			suzanne->setMesh(suzanneMesh);
+			suzanne->setMaterial(pbrTestTextureMaterial);
+			_world->add(suzanne);
+		}
+	}
 	
 
-	Light* light = new Light("light", glm::vec3(0.0f, 1.0f, -3.0f));
+	Light* light = new Light("light", glm::vec3(0.0f, 6.0f, -7.0f));
 	light->scale(glm::vec3(2, 2, 2));
 	light->setLightColor(glm::vec3(1, 1, 1));
 	light->setBehaviour(new LightBehaviour());
 	_world->add(light);
 
-	Light* light2 = new Light("light", glm::vec3(0, 1.0f, 4));
+	Light* light2 = new Light("light", glm::vec3(0, 6.0f, 4.0f));
 	light2->scale(glm::vec3(2, 2, 2));
 	light2->setLightColor(glm::vec3(1, 1, 1));
 	light2->setBehaviour(new LightBehaviour());
@@ -101,6 +116,7 @@ void ADSDemo::_initializeScene()
 void ADSDemo::_render()
 {
 	AbstractGame::_render();
+	//updateHud();
 }
 
 void ADSDemo::_processEvents()
