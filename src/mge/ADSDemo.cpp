@@ -53,7 +53,7 @@ void ADSDemo::_initializeScene()
 	//Mesh* dragonMesh = Mesh::load(config::MGE_MODEL_PATH + "stanford-dragon.obj");
 
 	int cols = 20;
-	int rows = 10;
+	int rows = 20;
 	float spacing = 0.8f;
 
 	//AbstractMaterial* grayMaterial = new ColorMaterial(glm::vec3(0.3, 0.2, 0.4));
@@ -91,13 +91,23 @@ void ADSDemo::_initializeScene()
 
 	for (int row = 0; row < rows; ++row) {
 		for (int col = 0; col < cols; ++col) {
-			GameObject* suzanne = new GameObject("suzanne", glm::vec3(-5.0f + col * spacing, 0.4 + row * spacing, 0.0f));
-			suzanne->scale(glm::vec3(0.3f, 0.3f, 0.3f));
+			GameObject* suzanne = new GameObject("suzanne", glm::vec3(-5.0f + col * spacing, 0.4 + row * spacing, -7.0f));
+			suzanne->scale(glm::vec3(0.2f, 0.2f, 0.2f));
 			suzanne->setMesh(suzanneMesh);
-			suzanne->setMaterial(pbrTestMaterial);
+			suzanne->setMaterial(pbrTestTextureMaterial);
 			_world->add(suzanne);
 		}
 	}
+
+	/*for (int row = 0; row < rows; ++row) {
+		for (int col = 0; col < cols; ++col) {
+			GameObject* dragon = new GameObject("dragon", glm::vec3(-5.0f + col * spacing, 0.4 + row * spacing, 0.0f));
+			dragon->scale(glm::vec3(0.3f, 0.3f, 0.3f));
+			dragon->setMesh(dragonMesh);
+			dragon->setMaterial(pbrTestMaterial);
+			_world->add(dragon);
+		}
+	}*/
 
 	/*GameObject* dragon = new GameObject("dragon", glm::vec3(0.0f, 0.0f, 0.0f));
 	dragon->setMesh(dragonMesh);
@@ -122,7 +132,7 @@ void ADSDemo::_initializeScene()
 	light2->setBehaviour(new LightBehaviour());
 	_world->add(light2);
 
-	/*Light* light3 = new Light("light", glm::vec3(8.0f, 8.0f, -5.0f));
+	Light* light3 = new Light("light", glm::vec3(8.0f, 8.0f, -5.0f));
 	light3->scale(glm::vec3(1, 1, 1));
 	light3->setMesh(cubeMesh);
 	light3->setMaterial(randomMaterial);
@@ -136,7 +146,7 @@ void ADSDemo::_initializeScene()
 	light4->setMaterial(randomMaterial);
 	light4->setLightColor(glm::vec3(1, 1, 1));
 	light4->setBehaviour(new LightBehaviour());
-	_world->add(light4);*/
+	_world->add(light4);
 
 }
 
